@@ -26,7 +26,7 @@
       .bg-tetris-s { background-color: #00f000; }
       .bg-tetris-t { background-color: #a000f0; }
       .bg-tetris-z { background-color: #f00000; }
-      .bg-tetris-g { background-color: #64748b; } /* Garbage */
+      .bg-tetris-g { background-color: #64748b; }
     </style>
   <script type="importmap">
 {
@@ -35,15 +35,14 @@
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
     "@google/genai": "https://esm.sh/@google/genai@^1.37.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
-    "vite": "https://esm.sh/vite@^7.3.1"
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
-    <!-- 這是正式環境加載程式碼的入口 -->
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
