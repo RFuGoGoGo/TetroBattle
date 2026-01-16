@@ -1,9 +1,25 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// 安全地獲取 API Key，防止 ReferenceError
+const getApiKey = () => {
+  try {
+    return process.env.API_KEY || "";
+  } catch (e) {
+    return "";
+  }
+};
+
+const apiKey = getApiKey();
+// 只有在有 API Key 的情況下才初始化 AI
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export async function getGameCommentary(score: number, lines: number, level: number, event: string) {
+  if (!ai) {
+    console.warn("Gemini API Key missing. Commentary disabled.");
+    return "Keep it up!";
+  }
+
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -18,6 +34,6 @@ export async function getGameCommentary(score: number, lines: number, level: num
     return response.text?.trim() || "Unbelievable play!";
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "Keep pushing!";
+    return "Nice move!";
   }
 }
